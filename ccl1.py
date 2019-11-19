@@ -91,13 +91,14 @@ cv2.imshow("Template", template)
 
 #--------------------
 #RETR_EXTERNAL or RETR_TREE
-image, cnts , hierarchy = cv2.findContours(imgA,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+# image, cnts , hierarchy = cv2.findContours(imgA,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+cnts , hierarchy = cv2.findContours(imgA,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 (cnts, _) = contours.sort_contours(cnts)
 
 #cnt = cnts[5]
 #x,y,w,h = cv2.boundingRect(cnt)
 #imgA = cv2.rectangle(imgA,(x,y),(x+w,y+h),(255,255,255),2)
-print "width",widthImg, " height: ", heightImg
+print ("width",widthImg, " height: ", heightImg)
 number = 0
 cy1 = 0
 for c in cnts:
@@ -106,7 +107,7 @@ for c in cnts:
     cX = int(M["m10"] / M["m00"])
     cY = int(M["m01"] / M["m00"])
     #-- location centroid
-    print "loc",number, " x: ", cX ,"  y: ", cY
+    print ("loc",number, " x: ", cX ,"  y: ", cY)
 
     #garis mendatar
     if number == 1:
@@ -125,7 +126,7 @@ for c in cnts:
     #-- location x, y, w, h
     x,y,w,h = cv2.boundingRect(c)
     cv2.rectangle(imgA,(x,y),(x+w,y+h),(255,255,255),2)
-    print "pos",number, " x: ", x ,"  y: ", y ,"  w: ", w ,"  h: ", h
+    print ("pos",number, " x: ", x ,"  y: ", y ,"  w: ", w ,"  h: ", h)
     cv2.line(imgA,(x,0),(x,heightImg),(255,255,255),1)
     cv2.line(imgA,(x + w,0),(x + w ,heightImg),(255,255,255),1)
 
